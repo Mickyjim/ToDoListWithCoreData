@@ -16,13 +16,22 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Properties
 
-    private var tasks: [String] = ["Task 1", "Task 2"]
+    private var tasks: [String] = []
 
     // MARK: - Actions
 
-    @IBAction private func addButtonTapped(_ sender: UIBarButtonItem) {}
+    @IBAction private func addButtonTapped(_ sender: UIBarButtonItem) {
+        displayTaskAlert { [unowned self] taskName in
+            guard let taskName = taskName, !taskName.isBlank else { return }
+            self.tasks.append(taskName)
+            self.tasksTableView.reloadData()
+        }
+    }
 
-    @IBAction private func resetButtonTapped(_ sender: UIBarButtonItem) {}
+    @IBAction private func resetButtonTapped(_ sender: UIBarButtonItem) {
+        tasks.removeAll()
+        tasksTableView.reloadData()
+    }
 }
 
 // MARK: - UITableViewDataSource
