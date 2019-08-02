@@ -12,4 +12,4 @@ Supports: iOS 12.x and above
 
 ### Description :
 
-To Do List to practice on CoreData. For iOS students (OpenClassRooms). 
+To do list to practice on CoreData. For iOS students (OpenClassRooms). 
