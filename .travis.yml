@@ -1,0 +1,6 @@
+language: swift
+osx_image: xcode10.2
+xcode_project: ToDoListWithCoreData.xcodeproj
+xcode_scheme: ToDoListWithCoreData
+xcode_destination:
+    platform=iOS Simulator,OS=12.0,name=iPhone 7
