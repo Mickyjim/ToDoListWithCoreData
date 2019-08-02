@@ -16,20 +16,20 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Properties
 
-    private var tasks: [String] = []
+    var coreDataManager: CoreDataManager?
 
     // MARK: - Actions
 
     @IBAction private func addButtonTapped(_ sender: UIBarButtonItem) {
         displayTaskAlert { [unowned self] taskName in
             guard let taskName = taskName, !taskName.isBlank else { return }
-            self.tasks.append(taskName)
+            self.coreDataManager?.createTask(name: taskName)
             self.tasksTableView.reloadData()
         }
     }
 
     @IBAction private func resetButtonTapped(_ sender: UIBarButtonItem) {
-        tasks.removeAll()
+        coreDataManager?.deleteAllTasks()
         tasksTableView.reloadData()
     }
 }
@@ -38,12 +38,12 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return coreDataManager?.tasks.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
-        taskCell.textLabel?.text = tasks[indexPath.row]
+        taskCell.textLabel?.text = coreDataManager?.tasks[indexPath.row].name
         return taskCell
     }
 }
@@ -61,6 +61,6 @@ extension HomeViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return tasks.isEmpty ? 200 : 0
+        return coreDataManager?.tasks.isEmpty ?? true ? 200 : 0
     }
 }
