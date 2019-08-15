@@ -12,10 +12,10 @@ extension Array where Element: Hashable {
     /**
      * Remove all duplicates elements into an array
      */
-    var removeDuplicates: [Element] {
-        var addedDict = [Element: Bool]()
-        return filter {
-            addedDict.updateValue(true, forKey: $0) == nil
-        }
-    }
+//    var removeDuplicates: [Element] {
+//        var addedDict = [Element: Bool]()
+//        return filter {
+//            addedDict.updateValue(true, forKey: $0) == nil
+//        }
+//    }
 }
