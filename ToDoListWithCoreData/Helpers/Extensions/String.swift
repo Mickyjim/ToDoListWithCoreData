@@ -12,7 +12,10 @@ extension String {
     /**
      * Check if a string contains at least one element
      */
+//    var isBlank: Bool {
+//        return !self.map({ $0.isWhitespace }).removeDuplicates.contains(false)
+//    }
     var isBlank: Bool {
-        return !self.map({ $0.isWhitespace }).removeDuplicates.contains(false)
+        return self.trimmingCharacters(in: .whitespaces) == String() ? true : false
     }
 }
